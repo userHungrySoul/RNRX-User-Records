@@ -91,7 +91,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(ExampleActions.fetchUser()),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ExampleScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ExampleScreen)
