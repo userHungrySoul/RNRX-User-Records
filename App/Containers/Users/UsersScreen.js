@@ -1,9 +1,10 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, TextInput } from 'react-native'
+import { Text, View, Button, ActivityIndicator, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import Style from './UsersScreenStyle'
 import { ApplicationStyles, Helpers, Metrics } from 'App/Theme'
+import UserActions from '../../Stores/Users/Actions'
 
 /**
  * This is an example of a container component.
@@ -11,11 +12,6 @@ import { ApplicationStyles, Helpers, Metrics } from 'App/Theme'
  * This screen displays a little help message and informations about a fake user.
  * Feel free to remove it.
  */
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu.',
-  android: 'Double tap R on your keyboard to reload,\nShake or press menu button for dev menu.',
-})
 
 class ExampleScreen extends React.Component {
   constructor(props) {
@@ -37,7 +33,7 @@ class ExampleScreen extends React.Component {
   }
 
   render() {
-    var { userIsLoading, userDetails } = this.props
+    var { userIsLoading, userDetails, propState } = this.props
     return (
       <View
         style={[
@@ -57,7 +53,7 @@ class ExampleScreen extends React.Component {
               placeholder="Please enter your name"
               value={this.state.name}
             />
-            <Text style={Style.instructions}>{instructions}</Text>
+            <Text style={Style.instructions}>{JSON.stringify(propState.user)}</Text>
             <Button
               style={ApplicationStyles.button}
               onPress={() => this.getDetails()}
@@ -80,20 +76,25 @@ class ExampleScreen extends React.Component {
 
   getDetails() {
     var { name } = this.state
-    alert(name)
+    // alert(name)
+    this.props.userFetch(name)
   }
 }
 
 ExampleScreen.propTypes = {
   userIsLoading: PropTypes.bool,
   userDetails: PropTypes.object,
+  userFetch: PropTypes.func,
+  propState: PropTypes.object,
 }
 
 const mapStateToProps = (state) => ({
   userIsLoading: state.example.userIsLoading,
+  propState: state,
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  userFetch: (username) => dispatch(UserActions.userFetch(username)),
   // fetchUser: () => dispatch(ExampleActions.fetchUser()),
 })
 
