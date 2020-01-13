@@ -44,6 +44,30 @@ function fetchUser() {
   })
 }
 
+function getUserAPI() {
+  const res = fetch(
+    'https://api.themoviedb.org/3/person/popular?api_key=15e52033fea5c17a86a522504a254f4e',
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log('getUserAPI:responseJson:' + JSON.stringify(responseJson))
+      return responseJson
+    })
+    .catch((error) => {
+      console.log('getUserAPI:error:')
+      return error
+    })
+  return res
+}
+
 export const userService = {
   fetchUser,
+  getUserAPI,
 }

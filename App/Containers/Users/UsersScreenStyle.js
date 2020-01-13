@@ -29,10 +29,29 @@ export default StyleSheet.create({
     marginBottom: Metrics.tiny,
     textAlign: 'center',
   },
+  // eslint-disable-next-line react-native/sort-styles
+  imageView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   // eslint-disable-next-line react-native/no-color-literals
   textInput: {
     borderColor: 'gray',
     borderWidth: 1,
     height: 40,
   },
+  image: {
+    height: 150,
+    resizeMode: 'contain',
+    width: 150,
+  },
+  // eslint-disable-next-line react-native/no-color-literals
+  nameListScroll: {
+    alignItems: 'center',
+    borderColor: 'grey',
+    borderWidth: 0.5,
+    justifyContent: 'center',
+    width: 100,
+  },
+  nameListScrollView: { maxHeight: 50 },
 })

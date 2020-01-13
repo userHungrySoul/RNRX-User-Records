@@ -5,6 +5,9 @@ const { Types, Creators } = createActions({
   userFetchSuccess: ['userDetails'],
   userFetchFailed: ['userDetailsError'],
   saveUser: ['user'],
+  getAllUsers: null,
+  getAllUsersSuccess: ['allUsers'],
+  getAllUsersFailed: ['allUsersError'],
 })
 
 export const UserTypes = Types

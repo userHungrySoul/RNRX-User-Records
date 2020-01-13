@@ -7,4 +7,6 @@ export const INITIAL_STATE = {
   saveUser: '',
   userDetails: {},
   userDetailsError: '',
+  allUsers: null,
+  allUsersError: null,
 }
