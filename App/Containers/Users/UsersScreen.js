@@ -6,14 +6,7 @@ import Style from './UsersScreenStyle'
 import { ApplicationStyles, Helpers, Metrics } from 'App/Theme'
 import UserActions from '../../Stores/Users/Actions'
 
-/**
- * This is an example of a container component.
- *
- * This screen displays a little help message and informations about a fake user.
- * Feel free to remove it.
- */
-
-class ExampleScreen extends React.Component {
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -53,13 +46,13 @@ class ExampleScreen extends React.Component {
               placeholder="Please enter your name"
               value={this.state.name}
             />
-            <Text style={Style.instructions}>{JSON.stringify(propState.user)}</Text>
+            <Text style={Style.instructions}>{JSON.stringify(propState)}</Text>
             <Button
               style={ApplicationStyles.button}
               onPress={() => this.getDetails()}
               title="Get Details"
             />
-            {userDetails ? (
+            {userDetails && userDetails ? (
               this.renderUserDetails(userDetails)
             ) : (
               <Text style={Style.instructions}>{'No Records Found'}</Text>
@@ -81,16 +74,18 @@ class ExampleScreen extends React.Component {
   }
 }
 
-ExampleScreen.propTypes = {
+LoginScreen.propTypes = {
   userIsLoading: PropTypes.bool,
-  userDetails: PropTypes.object,
+  user: PropTypes.object,
   userFetch: PropTypes.func,
   propState: PropTypes.object,
+  userDetails: PropTypes.object,
 }
 
 const mapStateToProps = (state) => ({
   userIsLoading: state.example.userIsLoading,
-  propState: state,
+  userDetails: state.user.userDetails,
+  propState: state.user,
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -98,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
   // fetchUser: () => dispatch(ExampleActions.fetchUser()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExampleScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

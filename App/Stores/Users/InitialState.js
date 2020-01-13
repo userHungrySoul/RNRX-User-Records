@@ -3,5 +3,8 @@
  */
 export const INITIAL_STATE = {
   username: '',
+  password: '',
   saveUser: '',
+  userDetails: {},
+  userDetailsError: '',
 }

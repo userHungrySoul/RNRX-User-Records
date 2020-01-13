@@ -18,9 +18,23 @@ export const saveUser = (state) => ({
   user: 'user',
 })
 
+const userFetchSuccess = (state, { userDetails }) => ({
+  ...state,
+  userDetails: userDetails,
+  userDetailsError: null,
+})
+
+const userFetchFailed = (state, { userDetailsError }) => ({
+  ...state,
+  userDetails: null,
+  userDetailsError: userDetailsError,
+})
+
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
   [UserTypes.USER_FETCH]: userFetch,
+  [UserTypes.USER_FETCH_SUCCESS]: userFetchSuccess,
+  [UserTypes.USER_FETCH_FAILED]: userFetchFailed,
 })
