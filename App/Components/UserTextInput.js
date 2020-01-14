@@ -11,6 +11,7 @@ const UserTextInput = (props) => {
         onChangeText={(text) => props.updateState(text)}
         placeholder={props.placeholderText}
         value={props.stateValue}
+        secureTextEntry={props.secureTextEntry || false}
       />
     </View>
   )
@@ -20,6 +21,7 @@ UserTextInput.propTypes = {
   stateValue: PropTypes.string,
   placeholderText: PropTypes.string,
   updateState: PropTypes.func,
+  secureTextEntry: PropTypes.bool,
 }
 
 export default UserTextInput

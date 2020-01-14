@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator, Text, Keyboard } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import Style from './LoginScreenStyle'
 import { Helpers, Metrics, Colors } from 'App/Theme'
 // eslint-disable-next-line no-unused-vars
-import UserActions from '../../Stores/Users/Actions'
+import UserMan from '../../Stores/UserMan/Actions'
 import { BrandingLogo, UserTextInput, RNButton } from '../../Components'
 
 class LoginScreen extends React.Component {
@@ -15,6 +15,7 @@ class LoginScreen extends React.Component {
   }
   componentDidMount() {
     // this.props.getAllUsers()
+    this.props.isLoading()
   }
 
   render() {
@@ -43,12 +44,16 @@ class LoginScreen extends React.Component {
                 stateValue={this.state.password}
                 updateState={(text) => this.onChangeText(text, 'password')}
                 placeholderText="Enter Password"
+                secureTextEntry={true}
               />
             </View>
-            <View style={[Helpers.fill, Helpers.center]}>
+            <View style={[Helpers.fill, Helpers.center, Helpers.row, Helpers.mainSpaceAround]}>
+              <RNButton title="Reset" color={Colors.grey} onPress={() => this.resetPress()} />
               <RNButton title="Login" color={Colors.primary} onPress={() => this.onLoginPress()} />
             </View>
-            <View style={Style.flex4}></View>
+            <View style={Style.flex4}>
+              <Text>{JSON.stringify(this.props.dummy)}</Text>
+            </View>
           </View>
         )}
       </View>
@@ -59,10 +64,16 @@ class LoginScreen extends React.Component {
     this.setState({ [key]: text })
   }
 
+  resetPress() {
+    this.props.resetUserMan()
+  }
+
   onLoginPress() {
     var { email, password } = this.state
     if (email && password) {
-      alert('button pressed')
+      Keyboard.dismiss()
+      // this.props.isLoading()
+      this.props.login(email, password)
     } else {
       alert('invalid details')
     }
@@ -70,15 +81,22 @@ class LoginScreen extends React.Component {
 }
 
 LoginScreen.propTypes = {
+  dummy: PropTypes.any,
   loginIsLoading: PropTypes.bool,
+  login: PropTypes.func,
+  resetUserMan: PropTypes.func,
+  isLoading: PropTypes.func,
 }
 
 const mapStateToProps = (state) => ({
-  // userIsLoading: state.example.userIsLoading,
+  loginIsLoading: state.UserMan.loginIsLoading,
+  dummy: state.UserMan,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // userFetch: (username) => dispatch(UserActions.userFetch(username)),
+  login: (username, password) => dispatch(UserMan.loginRequest(username, password)),
+  resetUserMan: () => dispatch(UserMan.resetUserMan()),
+  isLoading: () => dispatch(UserMan.loginIsLoading()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
