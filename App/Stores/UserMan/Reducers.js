@@ -16,7 +16,8 @@ const loginRequest = (state, { username, password }) => ({
 
 const loginIsLoading = (state) => ({
   ...state,
-  loginIsLoading: !state.loginIsLoading,
+  // loginIsLoading: !state.loginIsLoading,
+  loginIsLoading: false,
 })
 
 const loginSuccess = (state, { userDetails }) => ({

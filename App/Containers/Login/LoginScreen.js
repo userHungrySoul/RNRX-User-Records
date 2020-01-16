@@ -51,9 +51,7 @@ class LoginScreen extends React.Component {
               <RNButton title="Reset" color={Colors.grey} onPress={() => this.resetPress()} />
               <RNButton title="Login" color={Colors.primary} onPress={() => this.onLoginPress()} />
             </View>
-            <View style={Style.flex4}>
-              <Text>{JSON.stringify(this.props.dummy)}</Text>
-            </View>
+            <View style={Style.flex4}>{/* <Text>{JSON.stringify(this.props.dummy)}</Text> */}</View>
           </View>
         )}
       </View>
@@ -66,6 +64,10 @@ class LoginScreen extends React.Component {
 
   resetPress() {
     this.props.resetUserMan()
+    this.setState({
+      email: '',
+      password: '',
+    })
   }
 
   onLoginPress() {
@@ -90,7 +92,8 @@ LoginScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   loginIsLoading: state.UserMan.loginIsLoading,
-  dummy: state.UserMan,
+  dummy: state.startup,
+  appPermissions: state.startup,
 })
 
 const mapDispatchToProps = (dispatch) => ({
