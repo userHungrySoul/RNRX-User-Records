@@ -51,7 +51,9 @@ class LoginScreen extends React.Component {
               <RNButton title="Reset" color={Colors.grey} onPress={() => this.resetPress()} />
               <RNButton title="Login" color={Colors.primary} onPress={() => this.onLoginPress()} />
             </View>
-            <View style={Style.flex4}>{/* <Text>{JSON.stringify(this.props.dummy)}</Text> */}</View>
+            <View style={Style.flex4}>
+              <Text>{JSON.stringify(this.props.dummy)}</Text>
+            </View>
           </View>
         )}
       </View>
@@ -92,7 +94,7 @@ LoginScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   loginIsLoading: state.UserMan.loginIsLoading,
-  dummy: state.startup,
+  dummy: state.UserMan,
   appPermissions: state.startup,
 })
 

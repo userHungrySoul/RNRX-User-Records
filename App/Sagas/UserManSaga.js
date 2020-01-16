@@ -2,6 +2,7 @@ import { Alert } from 'react-native'
 import { put, call, select } from 'redux-saga/effects'
 import UserMan from 'App/Stores/UserMan/Actions'
 import { userService } from 'App/Services/UserService'
+// eslint-disable-next-line no-unused-vars
 import NavigationService from 'App/Services/NavigationService'
 // Select functions
 export const getUserMan = (state) => state.UserMan

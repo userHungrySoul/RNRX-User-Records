@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import Style from './HomeScreenStyle'
+// eslint-disable-next-line no-unused-vars
 import { Helpers, Metrics, Colors } from 'App/Theme'
 
 class HomeScreen extends React.Component {

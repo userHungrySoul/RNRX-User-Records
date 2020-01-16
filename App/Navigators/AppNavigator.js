@@ -1,10 +1,22 @@
-import { createAppContainer, createStackNavigator } from 'react-navigation'
+import {
+  createAppContainer,
+  createStackNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation'
 
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen'
 import UsersScreen from 'App/Containers/Users/UsersScreen'
 import LoginScreen from 'App/Containers/Login/LoginScreen'
 import HomeScreen from 'App/Containers/Home/HomeScreen'
-
+const HomeTabNavigators = createBottomTabNavigator(
+  {
+    HomeScreen: HomeScreen,
+    UserScreen: UsersScreen,
+  },
+  {
+    initialRouteName: 'HomeScreen',
+  }
+)
 /**
  * The root screen contains the application's navigation.
  *
@@ -19,7 +31,7 @@ const StackNavigator = createStackNavigator(
     // own screen and remove the example.
     MainScreen: LoginScreen,
     UserScreen: UsersScreen,
-    HomeScreen: HomeScreen,
+    HomeScreen: HomeTabNavigators,
   },
   {
     // By default the application will show the splash screen
