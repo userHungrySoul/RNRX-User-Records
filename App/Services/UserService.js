@@ -67,7 +67,35 @@ function getUserAPI() {
   return res
 }
 
+function loginUser(username, password) {
+  const res = fetch('http://localhost:3000/login', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      return {
+        ...responseJson,
+      }
+    })
+    .catch((error) => {
+      return {
+        ...error,
+        status: false,
+      }
+    })
+  return res
+}
+
 export const userService = {
   fetchUser,
   getUserAPI,
+  loginUser,
 }

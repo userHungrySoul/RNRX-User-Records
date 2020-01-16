@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { View, ActivityIndicator, Text, Keyboard } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
@@ -14,7 +15,6 @@ class LoginScreen extends React.Component {
     this.state = {}
   }
   componentDidMount() {
-    // this.props.getAllUsers()
     this.props.isLoading()
   }
 
